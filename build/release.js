@@ -52,9 +52,9 @@ const release = function (version) {
       title: 'npm publish',
       task: () => {
         if (/alpha|beta/.test(version)) {
-          execa.shell('npm publish --tag next')
+          execa.shell('npm publish --access public --tag next')
         } else {
-          execa.shell('npm publish')
+          execa.shell('npm publish --access public')
         }
       }
     }
