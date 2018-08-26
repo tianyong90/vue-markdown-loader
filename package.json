@@ -2,11 +2,19 @@
   "name": "@tianyong90/vue-markdown-loader",
   "version": "0.0.1",
   "description": "A simple webpack loader that transform markdown file to vue compoennt.",
+  "keywords": [
+    "vue loader",
+    "markdown-loader"
+  ],
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "release": "node build/release.js"
   },
   "author": "tianyong90 <412039588@qq.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tianyong90/vue-markdown-loader.git"
+  },
   "license": "MIT",
   "dependencies": {
     "hash-sum": "^1.0.2",
@@ -17,5 +25,10 @@
     "markdown-it-container": "^2.0.0",
     "markdown-it-emoji": "^1.4.0",
     "markdown-it-table-of-contents": "^0.4.3"
+  },
+  "devDependencies": {
+    "execa": "^0.11.0",
+    "inquirer": "^6.2.0",
+    "listr": "^0.14.1"
   }
 }
