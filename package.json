@@ -6,7 +6,7 @@
     "vue loader",
     "markdown-loader"
   ],
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "release": "node build/release.js"
   },
@@ -27,8 +27,12 @@
     "markdown-it-table-of-contents": "^0.4.3"
   },
   "devDependencies": {
-    "execa": "^0.11.0",
+    "execa": "^1.0.0",
+    "husky": "^1.1.2",
     "inquirer": "^6.2.0",
-    "listr": "^0.14.1"
+    "lint-staged": "^7.3.0",
+    "listr": "^0.14.1",
+    "prettier": "^1.14.3",
+    "tslint": "^5.11.0"
   }
 }

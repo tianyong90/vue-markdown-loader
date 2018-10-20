@@ -1,8 +1,7 @@
-const container = require('markdown-it-container')
+import container from 'markdown-it-container'
 
-module.exports = md => {
-  md
-    .use(...createContainer('tip', 'TIP'))
+export default md => {
+  md.use(...createContainer('tip', 'TIP'))
     .use(...createContainer('warning', 'WARNING'))
     .use(...createContainer('danger', 'WARNING'))
     // explicitly escape Vue syntax

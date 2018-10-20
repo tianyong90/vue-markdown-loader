@@ -1,14 +1,15 @@
-const hash = require('hash-sum')
-const LRU = require('lru-cache')
-const hljs = require('highlight.js')
+import hash from 'hash-sum'
+import LRU from 'lru-cache'
+import hljs from 'highlight.js'
 
 // markdown-it and plugins
-const emoji = require('markdown-it-emoji')
-const anchor = require('markdown-it-anchor')
-const toc = require('markdown-it-table-of-contents')
-const containers = require('./containers')
+import markdownIt from 'markdown-it'
+import emoji from 'markdown-it-emoji'
+import anchor from 'markdown-it-anchor'
+import toc from 'markdown-it-table-of-contents'
+import containers from './containers'
 
-const md = require('markdown-it')({
+const md = markdownIt({
   html: true,
   highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
