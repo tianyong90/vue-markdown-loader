@@ -9,6 +9,11 @@
   dependencies:
     any-observable "^0.3.0"
 
+"@types/node@^10.12.0":
+  version "10.12.0"
+  resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-10.12.0.tgz#ea6dcbddbc5b584c83f06c60e82736d8fbb0c235"
+  integrity sha1-6m3L3bxbWEyD8Gxg6Cc22PuwwjU=
+
 ansi-escapes@^1.0.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-1.4.0.tgz#d3a8a83b319aa67793662b13e761c7911422306e"
@@ -1813,6 +1818,11 @@ tsutils@^2.27.2:
   integrity sha1-MrSIUBRnrL7dS4VJhnOggSrKC5k=
   dependencies:
     tslib "^1.8.1"
+
+typescript@^3.1.3:
+  version "3.1.3"
+  resolved "http://registry.npm.taobao.org/typescript/download/typescript-3.1.3.tgz#01b70247a6d3c2467f70c45795ef5ea18ce191d5"
+  integrity sha1-AbcCR6bTwkZ/cMRXle9eoYzhkdU=
 
 uc.micro@^1.0.1, uc.micro@^1.0.5:
   version "1.0.5"

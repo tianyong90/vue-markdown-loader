@@ -1,0 +1,18 @@
+{
+  "files": [
+    "src/index.ts"
+  ],
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "es2015",
+    "lib": ["es2015"],
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "strict": false,
+    "noImplicitThis": true,
+    "alwaysStrict": false,
+    "types": ["node"],
+    "esModuleInterop": true
+  }
+}

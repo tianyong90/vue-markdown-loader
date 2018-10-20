@@ -11,32 +11,38 @@ import containers from './containers'
 
 const md = markdownIt({
   html: true,
-  highlight: function (str, lang) {
+  highlight: function(str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
-        return '<pre class="hljs"><code>' +
+        return (
+          '<pre class="hljs"><code>' +
           hljs.highlight(lang, str, true).value +
           '</code></pre>'
+        )
       } catch (__) {}
     }
 
-    return '<pre v-pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>'
-  }
+    return (
+      '<pre v-pre class="hljs"><code>' +
+      md.utils.escapeHtml(str) +
+      '</code></pre>'
+    )
+  },
 })
   .use(emoji)
   .use(anchor, {
     permalink: true,
     permalinkBefore: true,
-    permalinkSymbol: '#'
+    permalinkSymbol: '#',
   })
   .use(toc, {
-    includeLevel: [2, 3]
+    includeLevel: [2, 3],
   })
   .use(containers)
 
 const cache = LRU({ max: 1000 })
 
-module.exports = function (src) {
+export default src => {
   const isProd = process.env.NODE_ENV === 'production'
 
   const file = this.resourcePath
@@ -48,11 +54,8 @@ module.exports = function (src) {
 
   const html = md.render(src)
 
-  const res = (
-    `<template>\n` +
-    `<div class="content">${html}</div>\n` +
-    `</template>\n`
-  )
+  const res =
+    `<template>\n` + `<div class="content">${html}</div>\n` + `</template>\n`
   cache.set(key, res)
   return res
 }
