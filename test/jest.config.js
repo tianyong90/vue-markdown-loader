@@ -2,12 +2,11 @@ const path = require('path')
 
 module.exports = {
   rootDir: path.resolve(__dirname, '..'),
-  roots: ['<rootDir>/src'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
   testMatch: [
-    "<rootDir>/test/specs/*.js"
+    "<rootDir>/test/tests/*.test.ts"
   ],
   coverageDirectory: '<rootDir>/test/coverage',
   moduleFileExtensions: [
