@@ -1,6 +1,6 @@
 {
   "name": "@tianyong90/vue-markdown-loader",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple webpack loader that transform markdown file to vue compoennt.",
   "keywords": [
     "vue loader",
