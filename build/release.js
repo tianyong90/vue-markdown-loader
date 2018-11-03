@@ -8,10 +8,10 @@ const Listr = require('listr')
 
 const release = function (version) {
   const tasks = new Listr([
-    // {
-    //   title: 'Build release.',
-    //   task: () => execa.shell('npm run build:release')
-    // },
+    {
+      title: 'Build release.',
+      task: () => execa.shell('yarn run build')
+    },
     {
       title: 'Git',
       task: () => {

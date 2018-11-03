@@ -1,16 +1,18 @@
 {
-  "files": [
-    "src/index.ts"
-  ],
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es5",
+    "outDir": "./lib",
     "module": "commonjs",
-    "lib": ["es2018"],
+    "target": "esnext",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "lib": ["es2017"],
+    "declaration": false,
+    "sourceMap": false,
+    "esModuleInterop": true,
     "types": [
       "node"
-    ],
-    "outDir": "./lib"
+    ]
   },
   "include": [
     "./src/**/*.ts"
