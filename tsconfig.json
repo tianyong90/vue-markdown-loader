@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "./lib",
-    "module": "commonjs",
+    "module": "umd",
     "target": "esnext",
     "importHelpers": true,
     "moduleResolution": "node",
