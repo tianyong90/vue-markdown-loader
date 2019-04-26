@@ -23,9 +23,24 @@ const path = require('path');
  */
 
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
-	module: {
+  entry: path.resolve(__dirname,'src/index.js'),
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    chunkFilename: '[name].[hash].js',
+    filename: '[name].[hash].js'
+  },
+  mode: 'development',
+  resolve: {
+    extensions: ['.js', '.ts', '.vue'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
+  },
+  module: {
 		rules: [
 			{
 				include: [path.resolve(__dirname, 'src')],
@@ -60,17 +75,23 @@ module.exports = {
 						loader: 'sass-loader'
 					}
 				]
-			}
-		]
+			},
+      // {
+      //   test: /\.md$/,
+      //
+      //   use: [
+      //     {
+      //       loader: 'vue-loader'
+      //     },
+      //     {
+      //       // TODO:
+      //       loader: '@tianyong90/vue-markdown-loader'
+      //     }
+      //   ]
+      // }
+
+    ]
 	},
-
-	output: {
-		chunkFilename: '[name].[chunkhash].js',
-		filename: '[name].[chunkhash].js'
-	},
-
-	mode: 'development',
-
 	optimization: {
 		splitChunks: {
 			cacheGroups: {
@@ -79,11 +100,24 @@ module.exports = {
 					test: /[\\/]node_modules[\\/]/
 				}
 			},
-
 			chunks: 'async',
 			minChunks: 1,
 			minSize: 30000,
 			name: true
 		}
-	}
+	},
+  devServer: {
+    contentBase: './dist',
+    hot: true,
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: '@tianyong90/vue-markdown-loader example',
+      filename: 'index.html',
+      template: path.resolve(__dirname, 'index.html'),
+      inject: true,
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+  ]
 };
