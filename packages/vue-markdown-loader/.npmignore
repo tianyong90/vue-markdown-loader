@@ -1,0 +1,13 @@
+*
+
+# Keep source
+!/src/**/*
+
+? Keep built files
+!/lib/**/*
+
+# Keep types
+!/types/*.d.ts
+
+# Keep readme
+!/README.md
