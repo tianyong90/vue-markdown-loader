@@ -1,4 +1,0 @@
-describe('index', () => {
-  test('basic', () => {
-  })
-})

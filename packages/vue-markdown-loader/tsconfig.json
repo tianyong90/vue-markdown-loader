@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./lib",
+    "module": "umd",
+    "target": "esnext",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "lib": [
+      "es2017"
+    ],
+    "declaration": false,
+    "sourceMap": false,
+    "esModuleInterop": true,
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
