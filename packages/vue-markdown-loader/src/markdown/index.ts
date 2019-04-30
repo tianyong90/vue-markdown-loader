@@ -7,15 +7,15 @@ import preWrapperPlugin from './lib/preWrapper'
 import lineNumbersPlugin from './lib/lineNumbers'
 import containersPlugin from './lib/containers'
 // import hoistScriptStylePlugin from './lib/hoist'
-// import tocPlugin from './lib/tableOfContents'
+import tocPlugin from './lib/tableOfContents'
 import emojiPlugin from 'markdown-it-emoji'
 import anchorPlugin from 'markdown-it-anchor'
 import hash from 'hash-sum'
 import chalk from 'chalk'
 import { logger, slugify } from '../utils'
 
-export default (markdown: any = {}) => {
-  const { anchor, toc, plugins, lineNumbers, beforeInstantiate, afterInstantiate } = markdown
+export default (options: any = {}) => {
+  const { anchor, toc, plugins, lineNumbers, beforeInstantiate, afterInstantiate } = options
 
   // TODO
   // const resolver =
@@ -57,10 +57,10 @@ export default (markdown: any = {}) => {
     ])
     .end()
 
-  // TODO: TOC
-  // .plugin(PLUGINS.TOC)
-  // .use(tocPlugin, [toc])
-  // .end()
+    // TODO: TOC
+    .plugin(PLUGINS.TOC)
+    .use(tocPlugin, [toc])
+    .end()
 
   if (lineNumbers) {
     config
@@ -71,7 +71,9 @@ export default (markdown: any = {}) => {
 
   beforeInstantiate && beforeInstantiate()
 
-  const md = config.toMd(require('markdown-it'), markdown)
+  const md = config.toMd(require('markdown-it'), options)
+
+  // TODO: 根据 loader options 传来的参数加载额外 markdown-it 插件
 
   afterInstantiate && afterInstantiate()
 
@@ -91,7 +93,7 @@ export default (markdown: any = {}) => {
 
   dataReturnable(md)
 
-  // TODO:
+  // expose slugify
   md.slugify = slugify
 
   return md

@@ -74,8 +74,7 @@ module.exports = {
             // 使用 @tianyong90/vue-markdown-loader
             loader: '@tianyong90/vue-markdown-loader',
             options: {
-              // sourceDir: 'abc'
-              // TODO
+              // sourceDir: ''
               contentCssClass: 'markdown-body',
               markdown: {
                 lineNumbers: true,

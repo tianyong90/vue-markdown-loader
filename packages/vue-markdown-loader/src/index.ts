@@ -13,10 +13,8 @@ export default function(src) {
   const options = getOptions(this) || {}
   const loader = Object.create(this)
   const { sourceDir, contentCssClass } = options
-  let { markdown } = options
-  if (!markdown) {
-    markdown = md()
-  }
+  let { markdown: markdownOptions } = options
+  let markdown = md(markdownOptions)
 
   // we implement a manual cache here because this loader is chained before
   // vue-loader, and will be applied on the same file multiple times when

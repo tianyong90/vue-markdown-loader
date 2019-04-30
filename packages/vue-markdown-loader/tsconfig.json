@@ -6,6 +6,7 @@
     "target": "esnext",
     "importHelpers": true,
     "moduleResolution": "node",
+    "removeComments": true,
     "lib": [
       "es2017"
     ],

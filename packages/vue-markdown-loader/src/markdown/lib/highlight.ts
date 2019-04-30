@@ -1,14 +1,15 @@
 import prism from 'prismjs'
 import loadLanguages from 'prismjs/components/index'
-// import { logger, chalk, escapeHtml } from '@vuepress/shared-utils'
+import escapeHtml from 'escape-html'
+import chalk from 'chalk'
+import { logger } from '../../utils'
 
 // required to make embedded highlighting work...
 loadLanguages(['markup', 'css', 'javascript'])
 
 function wrap(code, lang) {
   if (lang === 'text') {
-    // TODO
-    // code = escapeHtml(code)
+    code = escapeHtml(code)
   }
   return `<pre v-pre class="language-${lang}"><code>${code}</code></pre>`
 }
@@ -48,8 +49,7 @@ export default (str, lang) => {
     try {
       loadLanguages([lang])
     } catch (e) {
-      // TODO
-      // logger.warn(chalk.yellow(`[vuepress] Syntax highlight for language "${lang}" is not supported.`))
+      logger.warn(chalk.yellow(`[vuepress] Syntax highlight for language "${lang}" is not supported.`))
     }
   }
   if (prism.languages[lang]) {
