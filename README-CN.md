@@ -1,24 +1,20 @@
 # vue-markdown-loader
 
-[简体中文](./README-CN.md)
+[ENGLISH](./README.md)
 
-This is a webpack loader that convert `.md` file to vue sfc(which can be loaded via vue-loader).
+这是一个用于将 markdown 文件转换为 vue sfc 组件的 webpack loader。项目的代码大部分提取自 vuepress 项目，但进行了一系列修改、修正以及优化，以便它能在非 [vuepress](https://github.com/vuejs/vuepress) 项目中使用。在此对这一官方包的开发者们表示感谢。如果你有兴趣，可以前往该项目，并 star。
 
-The project is inspired by [vuepress](https://github.com/vuejs/vuepress), we reused most of its source code and made some improvements to allow it being used in non-vuepress project.
-
-If you like Vuepress, please visit [vuepress](https://github.com/vuejs/vuepress) and star it. :smile:
-
-## Install
+## 安装
 
 ```bash
-npm i @tianyong90/vue-markdown-loader -S
+$ npm i @tianyong90/vue-markdown-loader -S
 ```
 
-## Useage
+## 使用
 
-1. configure
+1. 配置
 
-add loader rules for `.md` files in webpack.config.js
+在 webpack.config.js 中为 .md 文件添加加载规则
 
 ```js
 module: {
@@ -44,7 +40,7 @@ module: {
             // sourceDir: ''
             contentCssClass: 'markdown-body',
             markdown: {
-              lineNumbers: true, // enable line numbers
+              lineNumbers: true, // 启用行号
             }
           }
         }
@@ -55,7 +51,7 @@ module: {
 // other options
 ```
 
-2. import md file as vue single file component
+2. 将 `.md` 文件作为 vue 单文件组件导入
 
 ```vue
 <template>
@@ -70,6 +66,9 @@ export default {
 }
 </script>
 
+<style>
+// 为解析出来的 markdown 元素添加样式
+</style>
 ```
 
 ## License
