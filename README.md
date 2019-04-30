@@ -70,6 +70,9 @@ export default {
 }
 </script>
 
+<style>
+// add styles for rendered markdown elements
+</style>
 ```
 
 ## License
