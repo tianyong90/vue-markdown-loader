@@ -8,6 +8,8 @@ The project is inspired by [vuepress](https://github.com/vuejs/vuepress), we reu
 
 If you like Vuepress, please visit [vuepress](https://github.com/vuejs/vuepress) and star it. :smile:
 
+![screenshot](./images/screenshot.png)
+
 ## Install
 
 ```bash

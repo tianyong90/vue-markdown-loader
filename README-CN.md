@@ -4,10 +4,12 @@
 
 这是一个用于将 markdown 文件转换为 vue sfc 组件的 webpack loader。项目的代码大部分提取自 vuepress 项目，但进行了一系列修改、修正以及优化，以便它能在非 [vuepress](https://github.com/vuejs/vuepress) 项目中使用。在此对这一官方包的开发者们表示感谢。如果你有兴趣，可以前往该项目，并 star。
 
+![screenshot](./images/screenshot.png)
+
 ## 安装
 
 ```bash
-$ npm i @tianyong90/vue-markdown-loader -S
+npm i @tianyong90/vue-markdown-loader -S
 ```
 
 ## 使用
