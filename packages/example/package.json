@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "0.1.0-alpha.3",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "yarn webpack-dev-server --config webpack.config.js"
@@ -13,7 +13,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
-    "@tianyong90/vue-markdown-loader": "^0.1.0-alpha.3",
+    "@tianyong90/vue-markdown-loader": "^0.1.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "clean-webpack-plugin": "^2.0.1",
