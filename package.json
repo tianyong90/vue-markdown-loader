@@ -6,9 +6,8 @@
   "scripts": {
     "dev": "yarn run build && lerna run dev --stream --scope example",
     "build": "lerna run build --scope @tianyong90/vue-markdown-loader",
-    "release": "node build/release.js",
-    "test": "jest --config=jest.config.js",
-    "demo": "lerna run dev --scope example --stream -- --colors"
+    "demo": "lerna run dev --scope example --stream -- --colors",
+    "release": "yarn --pure-lockfile && node scripts/release.js"
   },
   "husky": {
     "hooks": {

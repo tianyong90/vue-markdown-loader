@@ -82,7 +82,8 @@ const release = async () => {
     '*'
   ]
 
-  execa('npm ')
+  console.log('lerna run build')
+  await execa(require.resolve('lerna/cli'), ['run', 'build'], { stdio: 'inherit' })
 
   console.log(`lerna ${releaseArguments.join(' ')}`)
   await execa(require.resolve('lerna/cli'), releaseArguments, { stdio: 'inherit' })

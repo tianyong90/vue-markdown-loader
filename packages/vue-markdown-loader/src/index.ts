@@ -42,7 +42,9 @@ export default function (src) {
     }
 
     devCache.set(file, {
+      headers,
       frontmatterData: data,
+      inferredTitle,
     })
   }
 
@@ -56,7 +58,7 @@ export default function (src) {
   return `<template>\n` + `<div class="content ${contentCssClass}">${html}</div>\n` + `</template>\n`
 }
 
-function headersChanged (a, b) {
+function headersChanged (a: any[], b: any[]): boolean {
   if (a.length !== b.length) {
     return true
   }
