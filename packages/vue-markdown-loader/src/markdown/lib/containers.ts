@@ -1,16 +1,17 @@
 import container from 'markdown-it-container'
 
-function createContainer (name: string, defaultTitle: string) {
+function createContainer(name: string, defaultTitle: string) {
   return [
     container,
     name,
     {
-      render (tokens, idx) {
+      render(tokens, idx) {
         const token = tokens[idx]
-        const info = token.info
-          .trim()
-          .slice(name.length)
-          .trim() || defaultTitle
+        const info =
+          token.info
+            .trim()
+            .slice(name.length)
+            .trim() || defaultTitle
         if (token.nesting === 1) {
           return `<div class="${name} custom-block"><p class="custom-block-title">${info}</p>\n`
         } else {

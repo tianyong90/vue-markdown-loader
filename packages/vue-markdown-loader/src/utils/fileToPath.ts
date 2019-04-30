@@ -2,7 +2,7 @@ import { indexRE, isIndexFile } from './isIndexFile'
 
 const extRE = /\.(vue|md)$/
 
-export = function fileToPath (file: string): string {
+export = function fileToPath(file: string): string {
   if (isIndexFile(file)) {
     // README.md -> /
     // README.vue -> /

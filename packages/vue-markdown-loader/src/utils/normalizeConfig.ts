@@ -2,14 +2,11 @@ import { assertTypes } from './datatypes'
 import logger from './logger'
 import chalk from 'chalk'
 
-export default function normalizeConfig (pluginsConfig: any) {
+export default function normalizeConfig(pluginsConfig: any) {
   const { valid, warnMsg } = assertTypes(pluginsConfig, [Object, Array])
   if (!valid) {
     if (pluginsConfig !== undefined) {
-      logger.warn(
-        `[${chalk.gray('config')}] ` +
-        `Invalid value for "plugin" field : ${warnMsg}`
-      )
+      logger.warn(`[${chalk.gray('config')}] ` + `Invalid value for "plugin" field : ${warnMsg}`)
     }
     pluginsConfig = []
     return pluginsConfig

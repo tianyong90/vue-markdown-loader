@@ -1,15 +1,15 @@
 class ENV {
-  isDebug: boolean;
-  isTest: boolean;
-  isProduction: boolean;
+  isDebug: boolean
+  isTest: boolean
+  isProduction: boolean
 
-  constructor () {
+  constructor() {
     this.isDebug = false
     this.isTest = process.env.NODE_ENV === 'test' || false
     this.isProduction = false
   }
 
-  setOptions (options: Record<string, boolean>) {
+  setOptions(options: Record<string, boolean>) {
     Object.assign(this, options)
   }
 }

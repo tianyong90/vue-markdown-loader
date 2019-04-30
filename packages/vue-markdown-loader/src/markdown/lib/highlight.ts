@@ -5,7 +5,7 @@ import loadLanguages from 'prismjs/components/index'
 // required to make embedded highlighting work...
 loadLanguages(['markup', 'css', 'javascript'])
 
-function wrap (code, lang) {
+function wrap(code, lang) {
   if (lang === 'text') {
     // TODO
     // code = escapeHtml(code)

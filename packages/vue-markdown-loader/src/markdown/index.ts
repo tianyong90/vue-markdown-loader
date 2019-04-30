@@ -62,7 +62,7 @@ export default (markdown: any = {}) => {
   // .use(tocPlugin, [toc])
   // .end()
 
-  if (!lineNumbers) {
+  if (lineNumbers) {
     config
       .plugin(PLUGINS.LINE_NUMBERS)
       .use(lineNumbersPlugin)
@@ -97,7 +97,7 @@ export default (markdown: any = {}) => {
   return md
 }
 
-export function dataReturnable (md) {
+export function dataReturnable(md) {
   // override render to allow custom plugins return data
   const render = md.render
   md.render = (...args) => {
@@ -113,23 +113,23 @@ export function dataReturnable (md) {
   }
 }
 
-function toDataBlockString (ob) {
+function toDataBlockString(ob) {
   if (Object.keys(ob).length === 0) {
     return ''
   }
   return `<data>${JSON.stringify(ob)}</data>`
 }
 
-export function isRequiredPlugin (plugin) {
+export function isRequiredPlugin(plugin) {
   return REQUIRED_PLUGINS.includes(plugin)
 }
 
-export function removePlugin (config, plugin) {
+export function removePlugin(config, plugin) {
   logger.debug(`Built-in markdown-it plugin ${chalk.green(plugin)} was removed.`)
   config.plugins.delete(plugin)
 }
 
-export function removeAllBuiltInPlugins (config) {
+export function removeAllBuiltInPlugins(config) {
   Object.keys(PLUGINS).forEach(key => {
     if (!isRequiredPlugin(PLUGINS[key])) {
       removePlugin(config, PLUGINS[key])
@@ -137,6 +137,4 @@ export function removeAllBuiltInPlugins (config) {
   })
 }
 
-export {
-  PLUGINS,
-}
+export { PLUGINS }

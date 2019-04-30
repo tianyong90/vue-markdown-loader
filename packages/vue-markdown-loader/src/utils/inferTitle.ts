@@ -8,7 +8,7 @@ import deeplyParseHeaders from './deeplyParseHeaders'
  * @returns {*}
  */
 
-export = function (frontmatter: Record<string, any>, strippedContent: string): string | void {
+export = function(frontmatter: Record<string, any>, strippedContent: string): string | void {
   if (frontmatter.home) {
     return 'Home'
   }

@@ -3,7 +3,7 @@
 import semver from 'semver'
 import env from './env'
 
-function resolveFallback (request: string, options: { paths: string[] }) {
+function resolveFallback(request: string, options: { paths: string[] }) {
   const Module = require('module')
   const isMain = false
   const fakeParent = new Module('', null)
@@ -11,7 +11,7 @@ function resolveFallback (request: string, options: { paths: string[] }) {
   const paths: string[] = []
 
   for (let i = 0; i < options.paths.length; i++) {
-    const path = (options.paths)[i]
+    const path = options.paths[i]
     fakeParent.paths = Module._nodeModulePaths(path)
     const lookupPaths = Module._resolveLookupPaths(request, fakeParent, true)
 
@@ -32,11 +32,9 @@ function resolveFallback (request: string, options: { paths: string[] }) {
   return filename
 }
 
-const resolve = semver.satisfies(process.version, '>=10.0.0')
-  ? require.resolve
-  : resolveFallback
+const resolve = semver.satisfies(process.version, '>=10.0.0') ? require.resolve : resolveFallback
 
-export function resolveModule (request: string, context: string): string {
+export function resolveModule(request: string, context: string): string {
   let resolvedPath
 
   if (env.isTest) {
@@ -50,7 +48,7 @@ export function resolveModule (request: string, context: string): string {
   return resolvedPath
 }
 
-export function loadModule (request: string, context: string, force = false) {
+export function loadModule(request: string, context: string, force = false) {
   const resolvedPath = resolveModule(request, context)
   if (resolvedPath) {
     if (force) {
@@ -60,14 +58,14 @@ export function loadModule (request: string, context: string, force = false) {
   }
 }
 
-export function clearModule (request: string, context: string) {
+export function clearModule(request: string, context: string) {
   const resolvedPath = resolveModule(request, context)
   if (resolvedPath) {
     clearRequireCache(resolvedPath)
   }
 }
 
-function clearRequireCache (id: string, map = new Map()) {
+function clearRequireCache(id: string, map = new Map()) {
   const module = require.cache[id]
   if (module) {
     map.set(id, true)

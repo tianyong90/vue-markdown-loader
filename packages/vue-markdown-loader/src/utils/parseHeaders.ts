@@ -14,10 +14,11 @@ import parseEmojis from './parseEmojis'
 // so that we can write HTML/Vue in the header. One exception is the HTML
 // wrapped by <code>(markdown token: '`') tag.
 
-const removeMarkdownTokens = (str: string): string => String(str)
-  .replace(/\[(.*)\]\(.*\)/, '$1') // []()
-  .replace(/(`|\*{1,3}|_)(.*?[^\\])\1/g, '$2') // `{t}` | *{t}* | **{t}** | ***{t}*** | _{t}_
-  .replace(/(\\)(\*|_|`|!)/g, '$2') // remove escape char '\'
+const removeMarkdownTokens = (str: string): string =>
+  String(str)
+    .replace(/\[(.*)\]\(.*\)/, '$1') // []()
+    .replace(/(`|\*{1,3}|_)(.*?[^\\])\1/g, '$2') // `{t}` | *{t}* | **{t}** | ***{t}*** | _{t}_
+    .replace(/(\\)(\*|_|`|!)/g, '$2') // remove escape char '\'
 
 const trim = (str: string): string => str.trim()
 

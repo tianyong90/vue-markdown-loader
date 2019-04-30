@@ -13,23 +13,21 @@ interface LoggerOptions {
 class Logger {
   options: LoggerOptions
 
-  constructor (options?: LoggerOptions) {
+  constructor(options?: LoggerOptions) {
     this.options = Object.assign(
       {
-        logLevel: process.argv.includes('--debug')
-          ? 4
-          : 3,
+        logLevel: process.argv.includes('--debug') ? 4 : 3,
       },
       options
     )
   }
 
-  setOptions (options: LoggerOptions) {
+  setOptions(options: LoggerOptions) {
     Object.assign(this.options, options)
   }
 
   // level: 4
-  debug (...args: any[]) {
+  debug(...args: any[]) {
     if (this.options.logLevel < 4) {
       return
     }
@@ -38,7 +36,7 @@ class Logger {
   }
 
   // level: 2
-  warn (...args: any[]) {
+  warn(...args: any[]) {
     if (this.options.logLevel < 2) {
       return
     }
@@ -46,7 +44,7 @@ class Logger {
   }
 
   // level: 1
-  error (...args: any[]) {
+  error(...args: any[]) {
     if (this.options.logLevel < 1) {
       return
     }
@@ -55,7 +53,7 @@ class Logger {
   }
 
   // level: 3
-  success (...args: any[]) {
+  success(...args: any[]) {
     if (this.options.logLevel < 3) {
       return
     }
@@ -63,7 +61,7 @@ class Logger {
   }
 
   // level: 3
-  tip (...args: any[]) {
+  tip(...args: any[]) {
     if (this.options.logLevel < 3) {
       return
     }
@@ -71,14 +69,14 @@ class Logger {
   }
 
   // level: 3
-  info (...args: any[]) {
+  info(...args: any[]) {
     if (this.options.logLevel < 3) {
       return
     }
     this.status('cyan', 'info', ...args)
   }
 
-  wait (...args: any[]) {
+  wait(...args: any[]) {
     if (this.options.logLevel < 3) {
       return
     }
@@ -86,7 +84,7 @@ class Logger {
   }
 
   // level: 3
-  status (color: string, label: string, ...args: any[]) {
+  status(color: string, label: string, ...args: any[]) {
     if (this.options.logLevel < 3) {
       return
     }
@@ -94,7 +92,7 @@ class Logger {
     console.log(chalk[color](label), ...args)
   }
 
-  developer (...args: any[]) {
+  developer(...args: any[]) {
     if (process.env.VUEPRESS_ENV !== 'developer' && !process.argv.includes('--developer')) {
       return
     }

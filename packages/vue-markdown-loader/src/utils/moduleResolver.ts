@@ -10,12 +10,7 @@ import { resolveModule, loadModule } from './moduleLoader'
 import tryChain from './tryChain'
 import { fsExistsFallback } from './fallback'
 import hash from 'hash-sum'
-import {
-  isString,
-  isFunction,
-  isObject,
-  assertTypes,
-} from './datatypes'
+import { isString, isFunction, isObject, assertTypes } from './datatypes'
 
 const SCOPE_PACKAGE_RE = /^@(.*)\/(.*)/
 
@@ -29,12 +24,7 @@ export class CommonModule {
   shortcut: string | null
   fromDep: boolean | null
 
-  constructor (
-    entry: string | null,
-    name: string | null,
-    shortcut: string | null,
-    fromDep: boolean | null,
-  ) {
+  constructor(entry: string | null, name: string | null, shortcut: string | null, fromDep: boolean | null) {
     this.entry = entry
     this.shortcut = shortcut
     this.name = name
@@ -64,13 +54,7 @@ class ModuleResolver {
   private typePrefixLength: number
   private prefixSlicePosition: number
 
-  constructor (
-    type: string,
-    org: string,
-    allowedTypes: Type[] = [String],
-    load = false,
-    cwd: string
-  ) {
+  constructor(type: string, org: string, allowedTypes: Type[] = [String], load = false, cwd: string) {
     this.type = type
     this.org = org
     this.allowedTypes = allowedTypes
@@ -92,7 +76,7 @@ class ModuleResolver {
    * Resolve package.
    */
 
-  public resolve (req: string, cwd: string): CommonModule | never {
+  public resolve(req: string, cwd: string): CommonModule | never {
     if (cwd) {
       this.setCwd(cwd)
     }
@@ -105,12 +89,15 @@ class ModuleResolver {
     const isStringRequest = isString(req)
     const isAbsolutePath = isStringRequest && path.isAbsolute(req)
 
-    const resolved = tryChain<string, CommonModule>([
-      [this.resolveNonStringPackage.bind(this), !isStringRequest],
-      [this.resolveAbsolutePathPackage.bind(this), isStringRequest && isAbsolutePath],
-      [this.resolveRelativePathPackage.bind(this), isStringRequest && !isAbsolutePath],
-      [this.resolveDepPackage.bind(this), isStringRequest],
-    ], req)
+    const resolved = tryChain<string, CommonModule>(
+      [
+        [this.resolveNonStringPackage.bind(this), !isStringRequest],
+        [this.resolveAbsolutePathPackage.bind(this), isStringRequest && isAbsolutePath],
+        [this.resolveRelativePathPackage.bind(this), isStringRequest && !isAbsolutePath],
+        [this.resolveDepPackage.bind(this), isStringRequest],
+      ],
+      req
+    )
 
     if (!resolved) {
       return new CommonModule(null, null, null, null /* fromDep */)
@@ -123,7 +110,7 @@ class ModuleResolver {
    * Set current working directory.
    */
 
-  private setCwd (cwd: string) {
+  private setCwd(cwd: string) {
     this.cwd = cwd
     return this
   }
@@ -132,8 +119,8 @@ class ModuleResolver {
    * Resolve non-string package, return directly.
    */
 
-  private resolveNonStringPackage (req: string) {
-    const { shortcut, name } = <NormalizedModuleRequest> this.normalizeRequest(req)
+  private resolveNonStringPackage(req: string) {
+    const { shortcut, name } = <NormalizedModuleRequest>this.normalizeRequest(req)
     return new CommonModule(req, name, shortcut, false /* fromDep */)
   }
 
@@ -141,12 +128,8 @@ class ModuleResolver {
    * Resolve module with absolute path.
    */
 
-  resolveAbsolutePathPackage (req: string) {
-    const normalized = fsExistsFallback([
-      req,
-      req + '.js',
-      path.resolve(req, 'index.js'),
-    ])
+  resolveAbsolutePathPackage(req: string) {
+    const normalized = fsExistsFallback([req, req + '.js', path.resolve(req, 'index.js')])
 
     if (!normalized) {
       throw new Error(`${req} Not Found.`)
@@ -162,7 +145,7 @@ class ModuleResolver {
    * Resolve module with absolute path.
    */
 
-  private resolveRelativePathPackage (req: string) {
+  private resolveRelativePathPackage(req: string) {
     req = path.resolve(process.cwd(), req)
     return this.resolveAbsolutePathPackage(req)
   }
@@ -171,11 +154,9 @@ class ModuleResolver {
    * Resolve module from dependency.
    */
 
-  private resolveDepPackage (req: string) {
+  private resolveDepPackage(req: string) {
     const { shortcut, name } = this.normalizeRequest(req)
-    const entry = this.load
-      ? loadModule(<string>name, this.cwd)
-      : resolveModule(<string>name, this.cwd)
+    const entry = this.load ? loadModule(<string>name, this.cwd) : resolveModule(<string>name, this.cwd)
     return new CommonModule(entry, name, shortcut, true /* fromDep */)
   }
 
@@ -183,17 +164,15 @@ class ModuleResolver {
    * Get shortcut.
    */
 
-  private getShortcut (req: string) {
-    return req.startsWith(this.nonScopePrefix)
-      ? req.slice(this.prefixSlicePosition)
-      : req
+  private getShortcut(req: string) {
+    return req.startsWith(this.nonScopePrefix) ? req.slice(this.prefixSlicePosition) : req
   }
 
   /**
    * Normalize string request name.
    */
 
-  normalizeName (req: string): NormalizedModuleRequest {
+  normalizeName(req: string): NormalizedModuleRequest {
     let name
     let shortcut
 
@@ -202,9 +181,7 @@ class ModuleResolver {
       if (pkg) {
         // speicial handling for default org.
         if (this.org && pkg.org === this.org) {
-          shortcut = pkg.name.startsWith(`${this.type}-`)
-            ? pkg.name.slice(this.typePrefixLength)
-            : pkg.name
+          shortcut = pkg.name.startsWith(`${this.type}-`) ? pkg.name.slice(this.typePrefixLength) : pkg.name
           name = `${this.scopePrefix}${shortcut}`
         } else {
           shortcut = this.getShortcut(pkg.name)
@@ -225,7 +202,7 @@ class ModuleResolver {
    * Normalize any request.
    */
 
-  public normalizeRequest (req: any): NormalizedModuleRequest {
+  public normalizeRequest(req: any): NormalizedModuleRequest {
     if (isString(req)) {
       return this.normalizeName(req)
     }
@@ -256,7 +233,7 @@ export interface ScopePackage {
   name: string
 }
 
-export function resolveScopePackage (name: string) {
+export function resolveScopePackage(name: string) {
   if (SCOPE_PACKAGE_RE.test(name)) {
     return {
       org: RegExp.$1,
@@ -269,14 +246,11 @@ export function resolveScopePackage (name: string) {
   }
 }
 
-export const getMarkdownItResolver = (cwd: string) => new ModuleResolver(
-  'markdown-it', '', [String, Function], true /* load module */, cwd
-)
+export const getMarkdownItResolver = (cwd: string) =>
+  new ModuleResolver('markdown-it', '', [String, Function], true /* load module */, cwd)
 
-export const getPluginResolver = (cwd: string): ModuleResolver => new ModuleResolver(
-  'plugin', 'vuepress', [String, Function, Object], true /* load module */, cwd
-)
+export const getPluginResolver = (cwd: string): ModuleResolver =>
+  new ModuleResolver('plugin', 'vuepress', [String, Function, Object], true /* load module */, cwd)
 
-export const getThemeResolver = (cwd: string): ModuleResolver => new ModuleResolver(
-  'theme', 'vuepress', [String], false /* load module */, cwd
-)
+export const getThemeResolver = (cwd: string): ModuleResolver =>
+  new ModuleResolver('theme', 'vuepress', [String], false /* load module */, cwd)

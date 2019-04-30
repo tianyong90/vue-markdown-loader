@@ -8,16 +8,16 @@ class Performance {
   private _startTime: number
   private _endTime: number
 
-  constructor () {
+  constructor() {
     this._totalMemory = os.totalmem()
   }
 
-  start () {
+  start() {
     this._startTime = Date.now()
     this._startFreeMemory = os.freemem()
   }
 
-  stop () {
+  stop() {
     this._endTime = Date.now()
     this._endFreeMemory = os.freemem()
     return {

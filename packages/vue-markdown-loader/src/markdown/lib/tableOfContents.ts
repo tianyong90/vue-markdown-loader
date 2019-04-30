@@ -13,7 +13,7 @@ export default (md, options) => {
   options = Object.assign({}, defaults, options)
   const tocRegexp = options.markerPattern
 
-  function toc (state, silent) {
+  function toc(state, silent) {
     let token
     let match
 
@@ -30,9 +30,9 @@ export default (md, options) => {
     match = tocRegexp.exec(state.src)
     match = !match
       ? []
-      : match.filter(function (m) {
-        return m
-      })
+      : match.filter(function(m) {
+          return m
+        })
     if (match.length < 1) {
       return false
     }
@@ -54,7 +54,7 @@ export default (md, options) => {
     return true
   }
 
-  md.renderer.rules.toc_open = function () {
+  md.renderer.rules.toc_open = function() {
     return vBindEscape`<TOC
       :class=${options.containerClass}
       :list-type=${options.listType}
@@ -62,14 +62,14 @@ export default (md, options) => {
     >`
   }
 
-  md.renderer.rules.toc_body = function () {
+  md.renderer.rules.toc_body = function() {
     return (
       `<template slot="header">${options.containerHeaderHtml}</template>` +
       `<template slot="footer">${options.containerFooterHtml}</template>`
     )
   }
 
-  md.renderer.rules.toc_close = function () {
+  md.renderer.rules.toc_close = function() {
     return `</TOC>`
   }
 
@@ -78,7 +78,7 @@ export default (md, options) => {
 }
 
 /** escape double quotes in v-bind derivatives */
-function vBindEscape (strs, ...args) {
+function vBindEscape(strs, ...args) {
   return strs.reduce((prev, curr, index) => {
     return (
       prev +
@@ -86,8 +86,8 @@ function vBindEscape (strs, ...args) {
       (index >= args.length
         ? ''
         : `"${JSON.stringify(args[index])
-          .replace(/"/g, "'")
-          .replace(/([^\\])(\\\\)*\\'/g, (_, char) => char + '\\u0022')}"`)
+            .replace(/"/g, "'")
+            .replace(/([^\\])(\\\\)*\\'/g, (_, char) => char + '\\u0022')}"`)
     )
   }, '')
 }

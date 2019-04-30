@@ -77,9 +77,9 @@ module.exports = {
               // sourceDir: 'abc'
               // TODO
               contentCssClass: 'markdown-body',
-              // markdown: {
-              //   lineNumbers: true,
-              // }
+              markdown: {
+                lineNumbers: true,
+              }
             }
           }
         ]

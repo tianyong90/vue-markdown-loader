@@ -20,7 +20,7 @@ export const isNull = (x: any) => x === null
 export const isNullOrUndefined = (x: any) => isUndefined(x) || isNull(x)
 
 export const toRawType = (value: any) => _toString.call(value).slice(8, -1)
-export const getType = function (fn: any) {
+export const getType = function(fn: any) {
   const match = fn && fn.toString().match(/^\s*function (\w+)/)
   return match ? match[1] : ''
 }
@@ -33,7 +33,7 @@ export const getType = function (fn: any) {
  */
 type Type = String | Number | Boolean | RegExp | Function | Record<string, any> | Array<any>
 
-function toNaturalMultiTypesLanguage (types: Type[]) {
+function toNaturalMultiTypesLanguage(types: Type[]) {
   const len = types.length
   if (len === 1) {
     return types.join('')
@@ -43,7 +43,7 @@ function toNaturalMultiTypesLanguage (types: Type[]) {
   return rest.join(', ') + ' or ' + last
 }
 
-export function assertTypes (value: any, types: Type[]) {
+export function assertTypes(value: any, types: Type[]) {
   let valid
   let warnMsg
   let actualType = toRawType(value)
@@ -61,8 +61,7 @@ export function assertTypes (value: any, types: Type[]) {
 
   if (!valid) {
     warnMsg =
-      `expected a ${chalk.green(toNaturalMultiTypesLanguage(expectedTypes))} ` +
-      `but got ${chalk.yellow(actualType)}.`
+      `expected a ${chalk.green(toNaturalMultiTypesLanguage(expectedTypes))} ` + `but got ${chalk.yellow(actualType)}.`
   }
 
   return { valid, warnMsg }

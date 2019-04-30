@@ -12,7 +12,7 @@ import deeplyParseHeaders from './deeplyParseHeaders'
 
 const cache = new LRU({ max: 1000 })
 
-export = function (content: string, include = [], md: any) {
+export = function(content: string, include = [], md: any) {
   const key = content + include.join(',')
   const hit = cache.get(key)
   if (hit) {
@@ -27,7 +27,7 @@ export = function (content: string, include = [], md: any) {
     if (t.type === 'heading_open' && include.includes(t.tag)) {
       const title = tokens[i + 1].content
       // @ts-ignore
-      const slug = (t.attrs).find(([name]) => name === 'id')[1]
+      const slug = t.attrs.find(([name]) => name === 'id')[1]
       res.push({
         level: parseInt(t.tag.slice(1), 10),
         title: deeplyParseHeaders(title),

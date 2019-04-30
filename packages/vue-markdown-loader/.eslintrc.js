@@ -6,7 +6,8 @@ module.exports = {
     'jest/globals': true,
   },
   'extends': [
-    'standard',
+    "plugin:prettier/recommended",
+    "prettier/standard",
     'plugin:jest/recommended',
   ],
   'parser': '@typescript-eslint/parser',
@@ -16,6 +17,7 @@ module.exports = {
   },
   'plugins': [
     'jest',
+    'prettier',
     '@typescript-eslint',
   ],
   'rules': {

@@ -18,13 +18,7 @@ interface PermalinkOption {
 // :year/:month/:day/:title/ => 2018/08/14/yyx 990803/
 // :year/:month/:day/:original/ => 2018/08/14/_posts/evan you.html
 
-export = function getPermalink ({
-  pattern,
-  slug,
-  date,
-  regularPath,
-  localePath = '/',
-}: PermalinkOption) {
+export = function getPermalink({ pattern, slug, date, regularPath, localePath = '/' }: PermalinkOption) {
   if (!pattern) {
     return
   }

@@ -7,7 +7,7 @@ import { parseFrontmatter, inferTitle, extractHeaders } from './utils'
 
 const devCache = new LRU({ max: 1000 })
 
-export default function (src) {
+export default function(src) {
   const isProd = process.env.NODE_ENV === 'production'
   const isServer = this.target === 'node'
   const options = getOptions(this) || {}
@@ -32,11 +32,12 @@ export default function (src) {
 
     // diff frontmatter and title, since they are not going to be part of the
     // returned component, changes in frontmatter do not trigger proper updates
-    if (cachedData && (
-      cachedData.inferredTitle !== inferredTitle ||
-      JSON.stringify(cachedData.frontmatterData) !== JSON.stringify(data) ||
-      headersChanged(cachedData.headers, headers)
-    )) {
+    if (
+      cachedData &&
+      (cachedData.inferredTitle !== inferredTitle ||
+        JSON.stringify(cachedData.frontmatterData) !== JSON.stringify(data) ||
+        headersChanged(cachedData.headers, headers))
+    ) {
       // frontmatter changed... need to do a full reload
       frontmatterEmitter.emit('update', file)
     }
@@ -58,7 +59,7 @@ export default function (src) {
   return `<template>\n` + `<div class="content ${contentCssClass}">${html}</div>\n` + `</template>\n`
 }
 
-function headersChanged (a: any[], b: any[]): boolean {
+function headersChanged(a: any[], b: any[]): boolean {
   if (a.length !== b.length) {
     return true
   }
