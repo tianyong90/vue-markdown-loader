@@ -21,12 +21,12 @@
     ]
   },
   "devDependencies": {
-    "husky": "^2.1.0",
-    "inquirer": "^6.2.0",
-    "lerna": "^3.13.4",
-    "lint-staged": "^8.0.4",
-    "listr": "^0.14.1",
-    "prettier": "^1.14.3"
+    "husky": "^2.3.0",
+    "inquirer": "^6.3.1",
+    "lerna": "^3.14.1",
+    "lint-staged": "^8.1.7",
+    "listr": "^0.14.3",
+    "prettier": "^1.17.1"
   },
   "config": {
     "commitizen": {
