@@ -7,13 +7,17 @@ import { parseFrontmatter, inferTitle, extractHeaders } from './utils'
 
 const devCache = new LRU({ max: 1000 })
 
+const stringify = src =>
+  JSON.stringify(src)
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029')
+
 export default function(src) {
   const isProd = process.env.NODE_ENV === 'production'
   const isServer = this.target === 'node'
   const options = getOptions(this) || {}
   const loader = Object.create(this)
-  const { sourceDir, contentCssClass } = options
-  let { markdown: markdownOptions } = options
+  const { sourceDir, contentCssClass, markdown: markdownOptions } = options
   let markdown = md(markdownOptions)
 
   // we implement a manual cache here because this loader is chained before
@@ -54,7 +58,14 @@ export default function(src) {
     relativePath: path.resolve(sourceDir, file).replace(/\\/g, '/'),
   })
 
-  return `<template>\n` + `<div class="content ${contentCssClass}">${html}</div>\n` + `</template>\n`
+  if (options.mode === 'raw') {
+    return `module.exports = {
+      html: ${stringify(html)},
+      attributes: ${stringify(data)}
+    }`
+  } else {
+    return `<template>\n` + `<div class="content ${contentCssClass}">${html}</div>\n` + `</template>\n`
+  }
 }
 
 function headersChanged(a: any[], b: any[]): boolean {
