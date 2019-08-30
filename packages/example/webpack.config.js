@@ -1,9 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
@@ -105,7 +103,6 @@ module.exports = {
   },
   stats: 'minimal',
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: '@tianyong90/vue-markdown-loader example',
       filename: 'index.html',
