@@ -45,7 +45,6 @@ module: {
         {
           loader: '@tianyong90/vue-markdown-loader',
           options: {
-            // sourceDir: ''
             contentCssClass: 'markdown-body',
             markdown: {
               lineNumbers: true, // 启用行号
@@ -98,21 +97,12 @@ module: {
       test: /\.md$/,
       use: [
         {
-          loader: 'vue-loader',
-          options: {
-            compilerOptions: {
-              preserveWhiteSpace: false
-            }
-          }
+          loader: 'html-loader',
         },
         {
           loader: '@tianyong90/vue-markdown-loader',
           options: {
-            // sourceDir: ''
-            contentCssClass: 'markdown-body',
-            markdown: {
-              lineNumbers: true, // 启用行号
-            }
+            mode: 'html', // 重要
           }
         }
       ]
@@ -124,28 +114,59 @@ module: {
 
 2. 将 `.md` 文件作为 vue 单文件组件导入
 
-```html
-<template>
-  <Hello />
-</template>
-
-<script scoped>
+```js
 import Hello from 'hello.md'
 
-export default {
-  components: { Hello }
-}
-</script>
-
-<style>
-// 为解析出来的 markdown 元素添加样式
-</style>
+console.log(Hello)
 ```
 
+加载的 Hello 结果如下：
+
+![加载后的 html](./images/md-html-string.png)
 
 ### 单独使用
 
+vue-markdown-loader 也可以解析 markdown 文件，并返回一个包含 html 字符串供 html-loader 加载。
 
+1. 配置
+
+在 webpack.config.js 中为 .md 文件添加加载规则
+
+```js
+module: {
+  rules: [
+    {
+      test: /\.vue$/,
+      loader: 'vue-loader'
+    },
+    {
+      test: /\.md$/,
+      use: [
+        {
+          loader: '@tianyong90/vue-markdown-loader',
+          options: {
+            mode: 'raw', // 重要
+            contentCssClass: 'markdown-body',
+          }
+        }
+      ]
+    }
+  ]
+},
+// other options
+```
+
+2. 将 `.md` 文件作为一个对象导入
+
+```js
+import Hello from 'hello.md'
+
+console.log(Hello)
+```
+
+加载后的对象包含 attributes(frontmatter 数据)和 html(解析后的 html 内容)，如下图：
+
+![加载后的对象](./images/md-raw-object.png)
 
 ## License
 
