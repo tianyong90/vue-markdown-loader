@@ -51,8 +51,7 @@ export default function(src) {
     })
   }
 
-  // TODO:
-  const { html, dataBlockString } = markdown.render(content, {
+  const { html } = markdown.render(content, {
     loader,
     frontmatter: data,
     relativePath: path.resolve(sourceDir, file).replace(/\\/g, '/'),
