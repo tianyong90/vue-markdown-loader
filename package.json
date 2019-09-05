@@ -8,7 +8,9 @@
     "build": "lerna run build --scope @tianyong90/vue-markdown-loader",
     "demo": "lerna run dev --scope example --stream -- --colors",
     "release": "yarn --pure-lockfile && node scripts/release.js",
-    "copy-readme": "bash scripts/copyreadme.sh"
+    "copy-readme": "bash scripts/copyreadme.sh",
+    "lint": "lerna run lint --parallel -- --color",
+    "lint:fix": "lerna run lint --parallel -- --color --fix"
   },
   "husky": {
     "hooks": {

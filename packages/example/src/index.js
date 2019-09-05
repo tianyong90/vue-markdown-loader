@@ -6,10 +6,10 @@ new Vue({
   el: '#app',
 
   components: {
-    Hello
+    Hello,
   },
 
   data: {
-    pageTitle: '@tianyong90/vue-markdown-loader demo'
-  }
+    pageTitle: '@tianyong90/vue-markdown-loader demo',
+  },
 })

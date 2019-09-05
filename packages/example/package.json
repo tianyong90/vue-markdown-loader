@@ -3,7 +3,9 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
-    "dev": "yarn webpack-dev-server --config webpack.config.js"
+    "dev": "yarn webpack-dev-server --config webpack.config.js",
+    "lint": "eslint --ext .js,.ts src",
+    "lint:fix": "yarn run lint --fix"
   },
   "dependencies": {
     "github-markdown-css": "^3.0.1",
