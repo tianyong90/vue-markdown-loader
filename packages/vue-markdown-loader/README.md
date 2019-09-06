@@ -102,7 +102,7 @@ module: {
           loader: 'html-loader',
         },
         {
-          `loader: '@tianyong90/`vue-markdown-loader',
+          `loader: '@tianyong90/vue-markdown-loader',
           options: {
             mode: 'html', // IMPORTANT
           }
