@@ -3,7 +3,7 @@
   "version": "0.1.4",
   "private": true,
   "scripts": {
-    "dev": "yarn webpack-dev-server --config webpack.config.js --open",
+    "dev": "yarn webpack-dev-server",
     "lint": "eslint --ext .js,.ts src"
   },
   "dependencies": {

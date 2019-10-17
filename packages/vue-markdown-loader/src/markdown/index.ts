@@ -6,19 +6,15 @@ import highlightLines from './lib/highlightLines'
 import preWrapperPlugin from './lib/preWrapper'
 import lineNumbersPlugin from './lib/lineNumbers'
 import containersPlugin from './lib/containers'
-// import hoistScriptStylePlugin from './lib/hoist'
-import tocPlugin from './lib/tableOfContents'
-import emojiPlugin from 'markdown-it-emoji'
 import anchorPlugin from 'markdown-it-anchor'
+import emojiPlugin from 'markdown-it-emoji'
+import tocPlugin from 'markdown-it-table-of-contents'
 import hash from 'hash-sum'
 import chalk from 'chalk'
 import { logger, slugify } from '../utils'
 
 export default (options: any = {}) => {
   const { anchor, toc, plugins, lineNumbers, beforeInstantiate, afterInstantiate } = options
-
-  // TODO
-  // const resolver =
 
   const config = new Config()
 
@@ -57,9 +53,14 @@ export default (options: any = {}) => {
     ])
     .end()
 
-    // TODO: TOC
     .plugin(PLUGINS.TOC)
-    .use(tocPlugin, [toc])
+    .use(tocPlugin, [
+      {
+        slugify,
+        includeLevel: [2, 3],
+        ...toc,
+      },
+    ])
     .end()
 
   if (lineNumbers) {

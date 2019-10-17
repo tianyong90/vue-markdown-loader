@@ -5,6 +5,8 @@ lang: zh-CN
 
 # @tianyong90/vue-markdown-loader example
 
+[[toc]]
+
 ## hello world!
 
 ## paragraph
@@ -19,7 +21,6 @@ Enjoy coding!
 | :--- | :----: | ----: |
 | aaaa | bbbbbb | ccccc |
 | a    | b      | c     |
-
 
 ## list
 
@@ -72,3 +73,15 @@ Hello, thanks for using @tianyong90/vue-markdown-loader.
 ::: danger STOP
 Danger zone!
 :::
+
+## toc h2
+
+test content
+
+### toc h3 first
+
+hello
+
+### toc h3 second
+
+hello
