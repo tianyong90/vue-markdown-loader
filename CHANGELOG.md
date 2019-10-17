@@ -1,3 +1,9 @@
+## 0.1.5
+
+### New features
+
+- support table-of-contents(toc)
+
 ## 0.1.0
 
 ### New features
