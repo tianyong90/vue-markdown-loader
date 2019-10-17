@@ -2,7 +2,7 @@
 
 [简体中文](./README-CN.md)
 
-This is a webpack laoder that can load markdown file. With proper configuration, the loader can convert markdown file content into `vue sfc` component object or into html string, so it can be chained with vue-loader or html-loader.
+This is a webpack loader that can load markdown files. With proper configuration, the loader can convert markdown file content into `vue sfc` component object or into html string, so it can be chained with vue-loader or html-loader.
 
 The project is inspired by [vuepress](https://github.com/vuejs/vuepress), we reused most of its source code and made some improvements to allow it being used in non-vuepress project.
 
@@ -16,9 +16,9 @@ If you are interested in Vuepress, please visit [vuepress](https://github.com/vu
 npm i @tianyong90/vue-markdown-loader -S
 ```
 
-## Useage
+## Usage
 
-### sue along with vue-loader
+### Use along with vue-loader
 
 Generally, it is recommended to be used with `vue-loader`
 
@@ -80,7 +80,7 @@ export default {
 </style>
 ```
 
-### along with html-loader
+### Use along with html-loader
 
 `vue-markdown-loader` can parse markdown and return html string which can be loaded by `html-loader`
 
@@ -126,13 +126,13 @@ Hello:
 
 ![加载后的 html](./images/md-html-string.png)
 
-### use it alone
+### Use it alone
 
-`vue-markdown-loader` can parse markdown file and return an object whick contains hteml and frontmattter data of the file.
+`vue-markdown-loader` can parse markdown file and return an object which contains html and frontmattter data of the file.
 
 1. configuration
 
-add rule for .md file in webpack.config.js
+add rule for `.md` file in webpack.config.js
 
 ```js
 module: {
@@ -166,7 +166,7 @@ import Hello from 'hello.md'
 console.log(Hello)
 ```
 
-the variable `Html` contains 2 property, `attributes`(frontmatter data) and `html`(html content), looks lick below:
+the variable `Html` contains 2 property, `attributes`(frontmatter data) and `html`(html content), looks like below:
 
 ![加载后的对象](./images/md-raw-object.png)
 

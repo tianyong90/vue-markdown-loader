@@ -19,7 +19,7 @@
   },
   "lint-staged": {
     "*.{js,ts}": [
-      "lerna run lint:fix",
+      "eslint --fix",
       "git add"
     ]
   },

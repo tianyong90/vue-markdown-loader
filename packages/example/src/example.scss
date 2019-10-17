@@ -1,3 +1,6 @@
+@import "~github-markdown-css/github-markdown.css";
+@import "~prism-themes/themes/prism-atom-dark.css";
+
 html,
 body {
   padding: 0;
@@ -12,9 +15,6 @@ body {
   padding: 20px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.225)
 }
-
-@import "~github-markdown-css/github-markdown.css";
-@import "~prism-themes/themes/prism-atom-dark.css";
 
 div[class*="language-"] {
   position: relative;

@@ -5,13 +5,7 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
-  testMatch: [
-    "<rootDir>/test/tests/*.test.ts"
-  ],
+  testMatch: ['<rootDir>/test/tests/*.test.ts'],
   coverageDirectory: '<rootDir>/test/coverage',
-  moduleFileExtensions: [
-    'ts',
-    'tsx',
-    'js'
-  ],
+  moduleFileExtensions: ['ts', 'tsx', 'js'],
 }
