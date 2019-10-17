@@ -79,7 +79,6 @@ const release = async () => {
     npmTag,
     '--registry',
     'https://registry.npmjs.org/',
-    '*'
   ]
 
   console.log('lerna run build')
