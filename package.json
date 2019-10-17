@@ -8,7 +8,7 @@
     "build": "lerna run build --scope @tianyong90/vue-markdown-loader",
     "demo": "lerna run dev --scope example --stream -- --colors",
     "release": "yarn --pure-lockfile && node scripts/release.js",
-    "copy-readme": "bash scripts/copyreadme.sh",
+    "copy-readme": "node scripts/copyreadme.js",
     "lint": "lerna run lint --parallel -- --color",
     "lint:fix": "lerna run lint --parallel -- --color --fix"
   },
@@ -28,8 +28,8 @@
     "inquirer": "^7.0.0",
     "lerna": "^3.14.1",
     "lint-staged": "^9.1.0",
-    "listr": "^0.14.3",
-    "prettier": "^1.17.1"
+    "prettier": "^1.17.1",
+    "shelljs": "^0.8.3"
   },
   "config": {
     "commitizen": {
