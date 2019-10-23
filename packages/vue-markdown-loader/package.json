@@ -66,9 +66,7 @@
     "nodemon": "^1.19.1",
     "prettier": "^1.14.3",
     "ts-jest": "^24.0.2",
-    "ts-node": "^8.2.0",
-    "tslint": "^5.11.0",
-    "typescript": "^3.4.5"
+    "ts-node": "^8.2.0"
   },
   "gitHead": "9ecee0ce0a6a37d59a273bc0c91584e9e2a70dfd"
 }
