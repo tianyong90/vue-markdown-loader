@@ -7,12 +7,12 @@ import { parseFrontmatter, inferTitle, extractHeaders } from './utils'
 
 const devCache = new LRU({ max: 1000 })
 
-const stringify = src =>
+const stringify = (src) =>
   JSON.stringify(src)
     .replace(/\u2028/g, '\\u2028')
     .replace(/\u2029/g, '\\u2029')
 
-export default function(src) {
+export default function (src) {
   const isProd = process.env.NODE_ENV === 'production'
   const isServer = this.target === 'node'
   const options = getOptions(this) || {}
@@ -54,7 +54,7 @@ export default function(src) {
   const { html } = markdown.render(content, {
     loader,
     frontmatter: data,
-    relativePath: path.resolve(sourceDir, file).replace(/\\/g, '/'),
+    relativePath: path.resolve(sourceDir as string, file).replace(/\\/g, '/'),
   })
 
   if (options.mode === 'raw') {
